@@ -1,3 +1,4 @@
+import { colors } from "appStyles";
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
@@ -17,6 +18,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     display: "flex",
     flexDirection: "row"
+  },
+  takeOrder: {
+    borderTopColor: colors.light,
+    borderTopWidth: 2,
+    marginTop: 16,
+    paddingTop: 16
   }
 });
 
