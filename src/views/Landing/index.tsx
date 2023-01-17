@@ -1,26 +1,19 @@
 import { Picker } from "@react-native-picker/picker";
 import type { FC } from "react";
-import React, { createContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 
+import type { Order } from "types";
 import { fetchApi } from "utils/api";
+import { TableContext } from "utils/contexts";
 import { useArrayReducer } from "utils/hooks/arrayReducer";
 
 import { styles } from "./styles";
-import type { TableContextValue } from "./types";
-
-const tableInitialValue: TableContextValue = {
-  orders: []
-};
-
-const TableContext = createContext(tableInitialValue);
 
 const Landing: FC = (): JSX.Element => {
   const [table, setTable] = useState(1);
   const [tables, setTables] = useState<number[]>([]);
-  const [orders, addOrder, deleteOrder, editOrder] = useArrayReducer(
-    tableInitialValue.orders
-  );
+  const [orders, addOrder, , editOrder] = useArrayReducer<Order>([]);
 
   useEffect(() => {
     fetchApi("tables")
@@ -38,7 +31,6 @@ const Landing: FC = (): JSX.Element => {
       <TableContext.Provider
         value={{
           addOrder,
-          deleteOrder,
           editOrder,
           orders
         }}
