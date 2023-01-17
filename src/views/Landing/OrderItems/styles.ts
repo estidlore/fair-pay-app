@@ -12,6 +12,10 @@ const styles = StyleSheet.create({
     marginVertical: 4,
     width: "25%"
   },
+  fallback: {
+    fontSize: 16,
+    marginVertical: 4
+  },
   header: {
     fontSize: 18,
     fontWeight: "bold",

@@ -1,19 +1,22 @@
 import { Picker } from "@react-native-picker/picker";
 import type { FC } from "react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { Text, View } from "react-native";
 
+import { Button } from "components/Button";
 import type { Order } from "types";
 import { fetchApi } from "utils/api";
 import { TableContext } from "utils/contexts";
 import { useArrayReducer } from "utils/hooks/arrayReducer";
 
 import { styles } from "./styles";
+import { TakeOrder } from "./TakeOrder";
 
 const Landing: FC = (): JSX.Element => {
   const [table, setTable] = useState(1);
   const [tables, setTables] = useState<number[]>([]);
   const [orders, addOrder, , editOrder] = useArrayReducer<Order>([]);
+  const [takingOrder, toggleTakingOrder] = useReducer((val) => !val, false);
 
   useEffect(() => {
     fetchApi("tables")
@@ -48,6 +51,11 @@ const Landing: FC = (): JSX.Element => {
             ))}
           </Picker>
         </View>
+        {takingOrder ? (
+          <TakeOrder onCancel={toggleTakingOrder} />
+        ) : (
+          <Button onPress={toggleTakingOrder}>{"Add order"}</Button>
+        )}
       </TableContext.Provider>
     </View>
   );

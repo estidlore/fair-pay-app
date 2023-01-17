@@ -1,10 +1,14 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
+  actionButton: {
+    marginRight: 8
+  },
   formControl: {
+    alignItems: "center",
     display: "flex",
     flexDirection: "row",
-    marginBottom: 24
+    marginVertical: 16
   },
   input: {
     width: "50%"
