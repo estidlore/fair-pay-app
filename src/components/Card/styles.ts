@@ -2,16 +2,19 @@ import { colors } from "appStyles";
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  text: {
-    color: colors.light,
-    fontSize: 16,
-    paddingHorizontal: 8,
-    paddingVertical: 4
+  actions: {
+    display: "flex",
+    flexDirection: "row",
+    marginTop: 16
   },
-  touchable: {
+  container: {
     borderColor: colors.light,
     borderRadius: 4,
-    borderWidth: 2
+    borderWidth: 2,
+    padding: 16
+  },
+  header: {
+    fontSize: 20
   }
 });
 
