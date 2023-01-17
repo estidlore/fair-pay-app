@@ -3,14 +3,16 @@ import "react-native";
 import { render, screen } from "@testing-library/react-native";
 import React from "react";
 
-import { App } from "./App";
+import { Landing } from ".";
 
-describe("App", () => {
+describe("Landing", () => {
   it("Render landing", () => {
-    expect.assertions(1);
-    render(<App />);
+    expect.assertions(2);
+    render(<Landing />);
 
     const header = screen.queryByText("Fair Pay");
     expect(header).toBeOnTheScreen();
+    const tableLabel = screen.queryByText("Table");
+    expect(tableLabel).toBeOnTheScreen();
   });
 });
