@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import React, { useCallback, useContext, useState } from "react";
+import React, { Fragment, useCallback, useContext, useState } from "react";
 import { Text, View } from "react-native";
 
 import { Button } from "components/Button";
@@ -20,15 +20,13 @@ const Orders: FC = (): JSX.Element => {
     <View>
       <Text style={[styles.header]}>{"Checks"}</Text>
       {approvedOrders.length === 0 ? (
-        <Text style={[styles.fallback]}>
-          {"There are not checks currently"}
-        </Text>
+        <Text style={[styles.element]}>{"There are not checks currently"}</Text>
       ) : (
         approvedOrders.map(({ customer, id, items, tip }) => {
           const subTotal = getSubtotalPrice(items);
 
           return (
-            <Card header={`${customer}'s check`} key={id}>
+            <Card header={`${customer}'s check`} key={id} style={[styles.card]}>
               <OrderItems items={items} />
               <View style={[styles.checkInfo]}>
                 <Text style={[styles.subheading]}>{"Tip"}</Text>
@@ -42,9 +40,7 @@ const Orders: FC = (): JSX.Element => {
       )}
       <Text style={[styles.header]}>{"Orders"}</Text>
       {ordersToApprove.length === 0 ? (
-        <Text style={[styles.fallback]}>
-          {"There are not orders currently"}
-        </Text>
+        <Text style={[styles.element]}>{"There are not orders currently"}</Text>
       ) : (
         ordersToApprove.map(({ customer, id, items }) => {
           const [tip, setTip] = useState(0);
@@ -69,21 +65,25 @@ const Orders: FC = (): JSX.Element => {
           return (
             <Card
               actionButtons={
-                <Button onPress={handleApprove}>{"Generate check"}</Button>
+                <Fragment>
+                  <View style={[styles.formControl]}>
+                    <Text style={[styles.tipLabel]}>{"Tip"}</Text>
+                    <Input
+                      keyboardType={"numeric"}
+                      onChangeText={handleTipChange}
+                      placeholder={"10 000"}
+                      style={[styles.tipInput]}
+                      value={`${tip}`}
+                    />
+                  </View>
+                  <Button onPress={handleApprove}>{"Generate check"}</Button>
+                </Fragment>
               }
               header={`${customer}'s order`}
               key={id}
+              style={[styles.card]}
             >
               <OrderItems items={items} />
-              <View style={[styles.formControl]}>
-                <Text style={[styles.tipLabel]}>{"Tip"}</Text>
-                <Input
-                  keyboardType={"numeric"}
-                  onChangeText={handleTipChange}
-                  placeholder={"10 000"}
-                  value={`${tip}`}
-                />
-              </View>
             </Card>
           );
         })

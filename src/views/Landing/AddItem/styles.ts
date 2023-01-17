@@ -1,4 +1,3 @@
-import { colors } from "appStyles";
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
@@ -6,12 +5,8 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end"
   },
   container: {
-    borderTopColor: colors.light,
-    borderTopWidth: 2,
     display: "flex",
-    flexDirection: "row",
-    marginTop: 8,
-    paddingVertical: 8
+    flexDirection: "row"
   },
   formControl: {
     display: "flex",
