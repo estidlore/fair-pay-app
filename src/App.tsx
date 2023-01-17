@@ -1,12 +1,15 @@
+import { appStyles } from "appStyles";
 import React from "react";
-import { SafeAreaView } from "react-native";
+import { SafeAreaView, ScrollView } from "react-native";
 
 import { Landing } from "views/Landing";
 
 const App = (): JSX.Element => {
   return (
-    <SafeAreaView>
-      <Landing />
+    <SafeAreaView style={[appStyles.root]}>
+      <ScrollView>
+        <Landing />
+      </ScrollView>
     </SafeAreaView>
   );
 };

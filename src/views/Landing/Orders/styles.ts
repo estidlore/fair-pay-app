@@ -7,13 +7,10 @@ const styles = StyleSheet.create({
   checkInfo: {
     display: "flex",
     flexDirection: "row",
+    justifyContent: "space-evenly",
     marginTop: 8
   },
   element: {
-    fontSize: 16,
-    width: "25%"
-  },
-  fallback: {
     fontSize: 16
   },
   formControl: {
@@ -28,8 +25,11 @@ const styles = StyleSheet.create({
   },
   subheading: {
     fontSize: 18,
-    fontWeight: "bold",
-    width: "25%"
+    fontWeight: "bold"
+  },
+  tipInput: {
+    marginRight: 16,
+    width: 80
   },
   tipLabel: {
     fontSize: 16,
