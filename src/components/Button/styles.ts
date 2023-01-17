@@ -5,8 +5,8 @@ const styles = StyleSheet.create({
   text: {
     color: colors.light,
     fontSize: 16,
-    paddingHorizontal: 8,
-    paddingVertical: 4
+    paddingHorizontal: 12,
+    paddingVertical: 7
   },
   touchable: {
     borderColor: colors.light,

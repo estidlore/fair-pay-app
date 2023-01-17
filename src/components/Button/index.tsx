@@ -8,13 +8,14 @@ import type { ButtonProps } from "./types";
 const Button: FC<ButtonProps> = ({
   children,
   disabled,
-  onPress
+  onPress,
+  style
 }: ButtonProps): JSX.Element => {
   return (
     <TouchableOpacity
       disabled={disabled}
       onPress={onPress}
-      style={[styles.touchable]}
+      style={[styles.touchable, style]}
     >
       <Text style={[styles.text]}>{children}</Text>
     </TouchableOpacity>
