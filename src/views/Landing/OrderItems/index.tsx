@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import React, { Fragment } from "react";
+import React from "react";
 import { Text, View } from "react-native";
 
 import { getSubtotalPrice } from "utils/orders";
@@ -12,26 +12,45 @@ const OrderItems: FC<OrderItemsProps> = ({
 }: OrderItemsProps): JSX.Element => {
   return (
     <View style={[styles.container]}>
-      <Text style={[styles.header]}>{"Product"}</Text>
-      <Text style={[styles.header]}>{"Unit price"}</Text>
-      <Text style={[styles.header]}>{"Quantity"}</Text>
-      <Text style={[styles.header]}>{"Total price"}</Text>
+      <View style={[styles.column]}>
+        <Text style={[styles.header]}>{"Product"}</Text>
+        {items.map((item) => (
+          <Text key={item.id} style={[styles.element]}>
+            {item.product.name}
+          </Text>
+        ))}
+        <Text style={[styles.header]}>{"Subtotal"}</Text>
+      </View>
+      <View style={[styles.column]}>
+        <Text style={[styles.header]}>{"U.P."}</Text>
+        {items.map((item) => (
+          <Text key={item.id} style={[styles.element]}>
+            {item.product.price}
+          </Text>
+        ))}
+      </View>
+      <View style={[styles.column]}>
+        <Text style={[styles.header]}>{"Qty"}</Text>
+        {items.map((item) => (
+          <Text key={item.id} style={[styles.element]}>
+            {item.quantity}
+          </Text>
+        ))}
+      </View>
+      <View style={[styles.column]}>
+        <Text style={[styles.header]}>{"Amount"}</Text>
+        {items.map((item) => (
+          <Text key={item.id} style={[styles.element]}>
+            {item.product.price * item.quantity}
+          </Text>
+        ))}
+        <Text style={[styles.element]}>{getSubtotalPrice(items)}</Text>
+      </View>
       {items.length === 0 ? (
-        <Text style={[styles.fallback]}>{"There are not items to show"}</Text>
-      ) : (
-        <Fragment>
-          {items.map(({ id, product, quantity }) => (
-            <Fragment key={id}>
-              <Text style={[styles.element]}>{product.name}</Text>
-              <Text style={[styles.element]}>{product.price}</Text>
-              <Text style={[styles.element]}>{quantity}</Text>
-              <Text style={[styles.element]}>{product.price * quantity}</Text>
-            </Fragment>
-          ))}
-          <Text style={[styles.header]}>{"Subtotal"}</Text>
-          <Text style={[styles.element]}>{getSubtotalPrice(items)}</Text>
-        </Fragment>
-      )}
+        <Text style={[styles.element, styles.fallback]}>
+          {"There are not items to show"}
+        </Text>
+      ) : undefined}
     </View>
   );
 };

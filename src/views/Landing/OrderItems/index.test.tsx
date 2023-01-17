@@ -28,11 +28,11 @@ describe("OrderItems", () => {
 
     const productHeader = screen.getByText("Product");
     expect(productHeader).toBeOnTheScreen();
-    const unitPriceHeader = screen.getByText("Unit price");
+    const unitPriceHeader = screen.getByText("U.P.");
     expect(unitPriceHeader).toBeOnTheScreen();
-    const quantityHeader = screen.getByText("Quantity");
+    const quantityHeader = screen.getByText("Qty");
     expect(quantityHeader).toBeOnTheScreen();
-    const totalPriceHeader = screen.getByText("Total price");
+    const totalPriceHeader = screen.getByText("Amount");
     expect(totalPriceHeader).toBeOnTheScreen();
   });
 
