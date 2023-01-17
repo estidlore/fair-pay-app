@@ -55,7 +55,7 @@ const AddItem: FC<AddItemProps> = ({
 
   return (
     <View style={[styles.container]}>
-      <View style={[styles.formControl]}>
+      <View style={[styles.formControl, styles.picker]}>
         <Text style={[styles.label]}>{"Product"}</Text>
         <Picker onValueChange={setId} selectedValue={id}>
           {options.map(({ id, name }) => (
@@ -64,7 +64,7 @@ const AddItem: FC<AddItemProps> = ({
         </Picker>
       </View>
       <View style={[styles.formControl]}>
-        <Text style={[styles.formControl]}>{"Quantity"}</Text>
+        <Text style={[styles.label]}>{"Quantity"}</Text>
         <Input
           keyboardType={"numeric"}
           onChangeText={handleChangeQuantity}
@@ -72,7 +72,9 @@ const AddItem: FC<AddItemProps> = ({
           value={`${quantity}`}
         />
       </View>
-      <Button onPress={handleAddItem}>{"+"}</Button>
+      <Button onPress={handleAddItem} style={[styles.addButton]}>
+        {"+"}
+      </Button>
     </View>
   );
 };

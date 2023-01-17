@@ -17,7 +17,7 @@ const OrderItems: FC<OrderItemsProps> = ({
       <Text style={[styles.header]}>{"Quantity"}</Text>
       <Text style={[styles.header]}>{"Total price"}</Text>
       {items.length === 0 ? (
-        <Text>{"There are not items to show"}</Text>
+        <Text style={[styles.fallback]}>{"There are not items to show"}</Text>
       ) : (
         <Fragment>
           {items.map(({ id, product, quantity }) => (

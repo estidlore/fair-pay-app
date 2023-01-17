@@ -80,7 +80,9 @@ const TakeOrder: FC<TakeOrderProps> = ({
     <Card
       actionButtons={
         <Fragment>
-          <Button onPress={handleSave}>{"Save order"}</Button>
+          <Button onPress={handleSave} style={[styles.actionButton]}>
+            {"Save order"}
+          </Button>
           <Button onPress={onCancel}>{"Cancel order"}</Button>
         </Fragment>
       }

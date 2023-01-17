@@ -1,20 +1,29 @@
+import { colors } from "appStyles";
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
+  addButton: {
+    alignSelf: "flex-end"
+  },
   container: {
-    alignItems: "flex-end",
+    borderTopColor: colors.light,
+    borderTopWidth: 2,
     display: "flex",
-    flexDirection: "row"
+    flexDirection: "row",
+    marginTop: 8,
+    paddingVertical: 8
   },
   formControl: {
     display: "flex",
-    flexBasis: 0,
     flexDirection: "column",
-    flexGrow: 1,
+    justifyContent: "space-between",
     marginRight: 8
   },
   label: {
-    marginBottom: 4
+    fontSize: 16
+  },
+  picker: {
+    flexGrow: 1
   }
 });
 
