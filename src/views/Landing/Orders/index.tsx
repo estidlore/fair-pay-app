@@ -1,18 +1,17 @@
 import type { FC } from "react";
-import React, { Fragment, useCallback, useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Text, View } from "react-native";
 
-import { Button } from "components/Button";
 import { Card } from "components/Card";
-import { Input } from "components/Input";
 import { TableContext } from "utils/contexts";
 import { getSubtotalPrice, splitOrdersByApproval } from "utils/orders";
 
 import { OrderItems } from "../OrderItems";
+import { Order } from "./Order";
 import { styles } from "./styles";
 
 const Orders: FC = (): JSX.Element => {
-  const { editOrder, orders } = useContext(TableContext);
+  const { orders } = useContext(TableContext);
 
   const [approvedOrders, ordersToApprove] = splitOrdersByApproval(orders);
 
@@ -42,51 +41,7 @@ const Orders: FC = (): JSX.Element => {
       {ordersToApprove.length === 0 ? (
         <Text style={[styles.element]}>{"There are not orders currently"}</Text>
       ) : (
-        ordersToApprove.map(({ customer, id, items }) => {
-          const [tip, setTip] = useState(0);
-
-          const handleTipChange = useCallback(
-            (newValue: string) => {
-              setTip(parseInt(newValue));
-            },
-            [setTip]
-          );
-
-          const handleApprove = useCallback(() => {
-            editOrder?.({
-              approved: true,
-              customer,
-              id,
-              items,
-              tip
-            });
-          }, [customer, editOrder, id, items, tip]);
-
-          return (
-            <Card
-              actionButtons={
-                <Fragment>
-                  <View style={[styles.formControl]}>
-                    <Text style={[styles.tipLabel]}>{"Tip"}</Text>
-                    <Input
-                      keyboardType={"numeric"}
-                      onChangeText={handleTipChange}
-                      placeholder={"10 000"}
-                      style={[styles.tipInput]}
-                      value={`${tip}`}
-                    />
-                  </View>
-                  <Button onPress={handleApprove}>{"Generate check"}</Button>
-                </Fragment>
-              }
-              header={`${customer}'s order`}
-              key={id}
-              style={[styles.card]}
-            >
-              <OrderItems items={items} />
-            </Card>
-          );
-        })
+        ordersToApprove.map((order) => <Order {...order} key={order.id} />)
       )}
     </View>
   );
